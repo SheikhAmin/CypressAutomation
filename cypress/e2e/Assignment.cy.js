@@ -1,3 +1,4 @@
+import SignUp from "../PageObjects/SignUp";
 
 
 describe('Assignment',()=>{
@@ -6,6 +7,8 @@ describe('Assignment',()=>{
 
         cy.visit("https://automationexercise.com/");
         cy.get("a[href='/login']").click();
+        
+        /*
         cy.get("input[placeholder='Name']").type("Sheikh Amin");
         cy.get('[data-qa="signup-email"]').type("sheikhamin.cs1@gmail.com");
         cy.get('[data-qa="signup-button"]').click();
@@ -28,5 +31,32 @@ describe('Assignment',()=>{
         cy.get("#mobile_number").type("01521255651");
         cy.get("button[data-qa='create-account']").click();
         cy.get('[data-qa="continue-button"]').click();
+
+        */
+
+        const obj = new SignUp();
+
+        obj.setName("Sheikh Amin");
+        obj.setEmailAddress("sheikhamin.c1s1@gmail.com");
+        obj.clickSignUp();
+        obj.setGender();
+        obj.setPassword("amin");
+        obj.setDay("7");
+        obj.setMonth("June");
+        obj.setYear("1999");
+        obj.clickNewsLetter();
+        obj.clickOffer();
+        obj.setFirstName("Sheikh");
+        obj.setLastName("Amin");
+        obj.setCompany("Dhaka Bank");
+        obj.setAddress("244 East Nakhalpara Tejgaon, Dhaka-1215");
+        obj.setAddress2("244 East Nakhalpara Tejgaon, Dhaka-1215");
+        obj.setCountry("Canada");
+        obj.setCity("Dhaka");
+        obj.setState("Dhaka");
+        obj.setZipCode("1215");
+        obj.setMobileNum("01521255651");
+        obj.clickCreateAccount();
+        obj.clickContinue();
     })
 })
