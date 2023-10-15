@@ -3,15 +3,16 @@ import LogIn from "../PageObjects/LogIn";
 import SignUp from "../PageObjects/SignUp";
 
 describe("Assignment", () => {
-  it("Sign Up", () => {
+  beforeEach("Visit", () => {
     cy.visit("https://automationexercise.com/");
     cy.get("a[href='/login']").click();
+  });
 
+  it("Sign Up", () => {
     const obj = new SignUp();
 
     obj.setName("Sheikh Amin");
-    obj.setEmailAddress("sheikhamin.c6s1@gmail.com"); //change email every time for teseting
-    obj.clickSignUp();
+    obj.setEmailAddress("sheikhamin.c6s1@gmail.com"); 
     obj.setGender();
     obj.setPassword("amin");
     obj.setDay("7");
@@ -31,24 +32,25 @@ describe("Assignment", () => {
     obj.setMobileNum("01521255651");
     obj.clickCreateAccount();
 
-    //checking account created successfully or not
-    cy.get("body > section:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > p:nth-child(2)").should('have.text','Congratulations! Your new account has been successfully created!'); 
-        
+    //checking account creation successfull or not
+    cy.get(
+      "body > section:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > p:nth-child(2)"
+    ).should(
+      "have.text",
+      "Congratulations! Your new account has been successfully created!"
+    );
+
     obj.clickContinue();
   });
 
-  it.only("Select item & Add to Cart", () => {
-    cy.visit("https://automationexercise.com/");
-    cy.get("a[href='/login']").click();
-
+  it("Select item & Add to Cart", () => {
     const login = new LogIn();
     login.enterEmail("sheikhamin.c6s1@gmail.com");
     login.enterPassword("amin");
     login.clickLogIn();
 
-    //checking Logged in as Sheikh Amin
-    cy.get(':nth-child(10) > a').should('contain','Logged in as Sheikh Amin'); 
-    cy.wait(3000);
+    //checking Logged in as Sheikh Amin or not
+    cy.get(":nth-child(10) > a").should("contain", "Logged in as Sheikh Amin");
 
     const cart = new Cart();
     cart.clickProduct();
@@ -65,8 +67,16 @@ describe("Assignment", () => {
     cart.setYYY("2025");
     cart.clickPay();
 
+    //checking order placement confirmation
+    cy.on("window:alert", (t) => {
+      expect(t).to.contain("Your order has been placed sucessfully!");
+    });
+
     //checking order confirmation
-    cy.get('.col-sm-9 > p').should('have.text','Congratulations! Your order has been confirmed!'); 
+    cy.get(".col-sm-9 > p").should(
+      "have.text",
+      "Congratulations! Your order has been confirmed!"
+    );
 
     cart.clickContinue1();
   });
