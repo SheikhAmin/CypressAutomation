@@ -2,7 +2,7 @@ class SignUp {
   Name = "input[placeholder='Name']";
   EmailAddress = '[data-qa="signup-email"]';
   btnSignUp = '[data-qa="signup-button"]';
-  btnGender = "#id_gender1";
+  btnGender = "input#id_gender1";
   Password = '[data-qa="password"]';
   Day = '[data-qa="days"]';
   Month = '[data-qa="months"]';
