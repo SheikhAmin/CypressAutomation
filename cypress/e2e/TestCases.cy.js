@@ -4,13 +4,15 @@ import SignUp from "../PageObjects/SignUp";
 import ContactForm from '../PageObjects/ContactForm';
 
 
+
 describe("Test Cases",()=>{
     beforeEach("Visit",()=>{
         cy.visit("https://automationexercise.com/");
         
     })
 
-    it.skip("Register User with existing email",()=>{
+    it("Register User with existing email",()=>{
+        cy.get('.shop-menu > .nav > :nth-child(1) > a').should('be.visible');
         cy.get('a[href="/login"]').click();
         const obj = new SignUp();
         /*
@@ -18,15 +20,18 @@ describe("Test Cases",()=>{
         cy.get("[data-qa='signup-email']").type("sheikhamin.c6s2@gmail.com");
         cy.get('[data-qa="signup-button"]').click();
         */
+        cy.get('.signup-form > h2').should('be.visible')
        obj.setName("momin");
        obj.setEmailAddress("sheikhamin.c6s2@gmail.com");
        obj.clickSignUp();
+       cy.get('.signup-form > form > p').should('be.visible');
     })
 
     it("Contact Form",()=>{
         const obj = new ContactForm();
         
         cy.get('.shop-menu > .nav > :nth-child(8) > a').click();
+        cy.get('.contact-form > .title').should('be.visible');
         /*
         cy.get("[data-qa='name']").type("AMIn");
         cy.get("[data-qa='email']").type('momin@gmail.com');
@@ -44,6 +49,15 @@ describe("Test Cases",()=>{
         obj.clickSubmit();
         
         cy.get('.status').contains("Success! Your details have been submitted successfully.");
+        cy.get('span').click();
+        cy.get('.shop-menu > .nav > :nth-child(1) > a').should('be.visible');
+    })
+
+    it.only("Verify Test Cases Page",()=>{
+        cy.get('.shop-menu > .nav > :nth-child(1) > a').should('be.visible');
+        cy.get("header[id='header'] li:nth-child(5) a:nth-child(1)").click();
+        cy.scrollTo('bottom');
     })
 
 })
+
