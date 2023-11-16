@@ -53,11 +53,24 @@ describe("Test Cases",()=>{
         cy.get('.shop-menu > .nav > :nth-child(1) > a').should('be.visible');
     })
 
-    it.only("Verify Test Cases Page",()=>{
+    it("Verify Test Cases Page",()=>{
         cy.get('.shop-menu > .nav > :nth-child(1) > a').should('be.visible');
         cy.get("header[id='header'] li:nth-child(5) a:nth-child(1)").click();
         cy.scrollTo('bottom');
     })
 
+    it.only('Verify all products & product detail page',()=>{
+        cy.get('.shop-menu > .nav > :nth-child(1) > a').should('be.visible');
+        cy.get("a[href='/products']").click();
+        cy.scrollTo('bottom');
+        cy.get('.title').should('be.visible');
+        cy.get(':nth-child(3) > .product-image-wrapper > .choose > .nav > li > a').click();
+        cy.get('.product-information > h2').should('be.visible');
+        cy.get('.product-information > :nth-child(3)').should('be.visible');
+        cy.get(':nth-child(5) > span').should('be.visible');
+        cy.get('.product-information > :nth-child(6)').should('be.visible');
+        cy.get('.product-information > :nth-child(7)').should('be.visible');
+        cy.get('.product-information > :nth-child(8)').should('be.visible');
+    })
 })
 
