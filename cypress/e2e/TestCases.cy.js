@@ -5,7 +5,9 @@ import ContactForm from '../PageObjects/ContactForm';
 
 
 
+
 describe("Test Cases",()=>{
+
     beforeEach("Visit",()=>{
         cy.visit("https://automationexercise.com/");
         
@@ -59,7 +61,7 @@ describe("Test Cases",()=>{
         cy.scrollTo('bottom');
     })
 
-    it.only('Verify all products & product detail page',()=>{
+    it('Verify all products & product detail page',()=>{
         cy.get('.shop-menu > .nav > :nth-child(1) > a').should('be.visible');
         cy.get("a[href='/products']").click();
         cy.scrollTo('bottom');
@@ -72,5 +74,19 @@ describe("Test Cases",()=>{
         cy.get('.product-information > :nth-child(7)').should('be.visible');
         cy.get('.product-information > :nth-child(8)').should('be.visible');
     })
+
+    it.only('Search Product',()=>{
+        cy.get('.shop-menu > .nav > :nth-child(1) > a').should('be.visible');
+        cy.get("a[href='/products']").click();
+        cy.scrollTo('bottom');
+        cy.scrollTo('top');
+        cy.get('#search_product').type('Blue Top');
+        cy.get('#submit_search').click();
+        cy.get('.productinfo > p').contains('Blue');
+        cy.get('.features_items > .col-sm-4').should('be.visible');
+        
+    })
 })
+
+
 
