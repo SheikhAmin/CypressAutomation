@@ -2,6 +2,8 @@
 import 'cypress-file-upload';
 import SignUp from "../PageObjects/SignUp";
 import ContactForm from '../PageObjects/ContactForm';
+import Subscription from '../PageObjects/Subscription.cy';
+
 
 
 
@@ -75,7 +77,7 @@ describe("Test Cases",()=>{
         cy.get('.product-information > :nth-child(8)').should('be.visible');
     })
 
-    it.only('Search Product',()=>{
+    it('Search Product',()=>{
         cy.get('.shop-menu > .nav > :nth-child(1) > a').should('be.visible');
         cy.get("a[href='/products']").click();
         cy.scrollTo('bottom');
@@ -85,6 +87,13 @@ describe("Test Cases",()=>{
         cy.get('.productinfo > p').contains('Blue');
         cy.get('.features_items > .col-sm-4').should('be.visible');
         
+    })
+    it.only('Verify Subscription in home page',()=>{
+        const ob = new Subscription();
+        ob.goDown();
+        ob.emailType('sheikhamin.cs@gmail.com');
+        ob.btnClick();
+        ob.alert();
     })
 })
 
