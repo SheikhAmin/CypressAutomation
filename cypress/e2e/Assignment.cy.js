@@ -12,7 +12,7 @@ describe("Assignment", () => {
     const obj = new SignUp();
 
     obj.setName("Sheikh Amin");
-    obj.setEmailAddress("sheikhamin.c6s2@gmail.com");
+    obj.setEmailAddress("sheikamin.c6s2@gmail.com");
     obj.clickSignUp();
     obj.setGender();
     obj.setPassword("amin");
@@ -46,7 +46,7 @@ describe("Assignment", () => {
 
   it("Select item & Add to Cart", () => {
     const login = new LogIn();
-    login.enterEmail("sheikhamin.c6s2@gmail.com");
+    login.enterEmail("sheikamin.c6s2@gmail.com");
     login.enterPassword("amin");
     login.clickLogIn();
 

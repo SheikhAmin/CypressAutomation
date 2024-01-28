@@ -8,6 +8,8 @@ import Subscription from '../PageObjects/Subscription.cy';
 
 
 
+
+
 describe("Test Cases",()=>{
 
     beforeEach("Visit",()=>{
@@ -88,12 +90,42 @@ describe("Test Cases",()=>{
         cy.get('.features_items > .col-sm-4').should('be.visible');
         
     })
-    it.only('Verify Subscription in home page',()=>{
+
+    it('Verify Subscription in home page',()=>{
         const ob = new Subscription();
         ob.goDown();
         ob.emailType('sheikhamin.cs@gmail.com');
         ob.btnClick();
         ob.alert();
+    })
+
+    it("Verify Subscription In Cart Page",()=>{
+        cy.get('.active > :nth-child(1) > h2').should('have.text',"Full-Fledged practice website for Automation Engineers");
+        cy.get('.shop-menu > .nav > :nth-child(3) > a').click();
+        cy.get('h2').scrollIntoView().should('have.text','Subscription');
+        cy.get('#susbscribe_email').type("sheikhamin.qa@gmail.com").click();
+  
+    })
+    it.only("add products in cart",()=>{
+        // Set default timeout in milliseconds
+        //Cypress.config('defaultCommandTimeout', 10000); // 10 seconds
+
+        cy.get(".logo.pull-left > a > img").should('be.visible');
+        cy.get(".shop-menu > .nav >:nth-child(2)").click();
+        //cy.get("a[data-product-id='1']").first().click();
+        //cy.get(':nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn')
+        cy.get(':nth-child(3) > .product-image-wrapper > .single-products > .productinfo > .btn').click();
+        cy.get(".modal-footer > .btn").contains("Continue Shopping").click();
+        cy.get(':nth-child(4) > .product-image-wrapper > .single-products > .productinfo > .btn').click();
+        cy.get("u").click();
+        cy.get("#product-1 > .cart_description > h4 > a").contains("Blue Top");
+        cy.get("#product-2 > .cart_description > h4 > a").contains("Men Tshirt");
+        cy.get(".cart_price > p").contains("Rs. 500");
+        cy.get(".cart_quantity > button").contains("1");
+        cy.get(".cart_total > p").contains("Rs. 500");
+        cy.get(".cart_quantity > button").contains("1");
+        cy.get(".cart_total > p").contains("Rs. 400");
+
     })
 })
 
