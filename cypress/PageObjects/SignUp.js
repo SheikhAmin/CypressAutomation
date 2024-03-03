@@ -1,4 +1,5 @@
 class SignUp {
+  
   Name = "input[placeholder='Name']";
   EmailAddress = '[data-qa="signup-email"]';
   btnSignUp = '[data-qa="signup-button"]';
