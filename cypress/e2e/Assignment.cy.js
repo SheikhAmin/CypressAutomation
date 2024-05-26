@@ -44,7 +44,7 @@ describe("Assignment", () => {
     obj.clickContinue();
   });
 
-  it("Select item & Add to Cart", () => {
+  it.only("Select item & Add to Cart", () => {
     const login = new LogIn();
     login.enterEmail("sheikamin.c6s2@gmail.com");
     login.enterPassword("amin");

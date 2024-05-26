@@ -102,6 +102,7 @@ describe("Test Cases", () => {
     cy.get("h2").scrollIntoView().should("have.text", "Subscription");
     cy.get("#susbscribe_email").type("sheikhamin.qa@gmail.com").click();
   });
+
   it("add products in cart", () => {
     // Set default timeout in milliseconds
     //Cypress.config('defaultCommandTimeout', 10000); // 10 seconds
@@ -139,4 +140,23 @@ describe("Test Cases", () => {
     cy.get(".text-center>a").click();
     cy.get(".disabled").contains("4");
   });
+
+  it('Place order: Register while checkout',()=>{
+    cy.get(".logo.pull-left > a > img").should("be.visible");
+
+    /*
+    cy.get(
+      ":nth-child(3) >.product-image-wrapper > .choose > .nav > li > a"
+    ).click();
+    */
+    cy.get(':nth-child(6) >.product-image-wrapper >.single-products >.productinfo >.btn').click();
+    
+    //cy.get('.overlay-content>:nth-child(3)').click({multiple:true});
+    cy.get(".modal-footer").click()
+    
+    cy.get('.col-sm-8>.shop-menu>.nav>:nth-child(3)>a').click({multiple:true})
+    cy.get(".active").contains("Shopping Cart")
+    cy.get('.col-sm-6>a').click()
+    cy.get('.modal-body>:nth-child(2)>a').click()
+  })
 });
