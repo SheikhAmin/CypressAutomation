@@ -1,11 +1,11 @@
 
-# # E-Commerce Website Automation  
+# # CypressAutomation  
 
 An E-Commerce Website is automated by implementing test cases for various test scenarios.
 
 ## Here the following tasks are done:
 
-- Automated Sign-Up, Login, Cart, Check-Out, Payment, Confirm Placing order Using Cypress.
+- Automated sign-up, login, cart, check-out, payment, and confirmation of placing an order using Cypress.
 - Used Page Object Model pattern.
 - Conducted End-to-End Testing.
 - Implemented CI using Git Actions.
